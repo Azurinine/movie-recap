@@ -1,11 +1,13 @@
 public class Show extends ShowAbs {
     // Example property
     private String title;
+    private Episode[] episodes;
+    private 
 
     // Constructor
     public Show(String title) {
         // Calls API and gets info
-        // Gets Show title, 
+        // Gets Show title, creates Episode objects, 
 
     }
 
