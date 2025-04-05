@@ -7,8 +7,8 @@ public class Show extends ShowAbs {
     public Show(){
         // Default constructor
     }
-    public Show(String title) {
-        //TODO
+    public Show(String title, int numberSeason, String pt) {
+        String info = OMDb.SearchShow(title, numberSeason, pt);
 
         // Calls API and gets info
         // Gets Show title, creates Episode objects, 

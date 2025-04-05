@@ -3,6 +3,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.io.*;
 
+
 public class OMDb {
 
     public static final String SEARCH_URL = "https://www.omdbapi.com/?apikey=844ebcdd&t=SHOW&Season=SEASON&plot=PLOT";
@@ -45,4 +46,5 @@ public class OMDb {
         String jresponse = OMDb.SearchShow("arcane", 1, "short");
         System.out.println(jresponse);
     }
+    
 }
