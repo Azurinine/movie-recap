@@ -10,7 +10,7 @@ public class Seasons {
 
         // Pareses String and creates Episode Objects
         episodes = null;
-        seasonNum = null;
+        seasonNum = 0;
         name = null;
     }
 
