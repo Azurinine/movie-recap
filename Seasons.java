@@ -6,7 +6,7 @@ public class Seasons {
 
 
     public Seasons(String seasonInfo) {
-        // TODO testing
+        // TODO
 
         // Pareses String and creates Episode Objects and appends to the array
         episodes = null;
