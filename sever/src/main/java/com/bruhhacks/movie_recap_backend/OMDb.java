@@ -1,3 +1,4 @@
+package com.bruhhacks.movie_recap_backend;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
