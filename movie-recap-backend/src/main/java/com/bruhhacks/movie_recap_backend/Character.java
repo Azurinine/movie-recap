@@ -1,3 +1,5 @@
+package com.bruhhacks.movie_recap_backend;
+
 public class Character {
     private String name;
     private String summary;

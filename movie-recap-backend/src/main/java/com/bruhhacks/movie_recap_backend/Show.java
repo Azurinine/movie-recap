@@ -1,3 +1,5 @@
+package com.bruhhacks.movie_recap_backend;
+
 public class Show extends ShowAbs {
 
     private String apiOutput; // API output

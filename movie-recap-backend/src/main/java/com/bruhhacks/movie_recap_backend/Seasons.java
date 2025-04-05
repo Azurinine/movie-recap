@@ -1,3 +1,5 @@
+package com.bruhhacks.movie_recap_backend;
+
 public class Seasons {
     private final Episode[] episodes;
     private final int seasonNum; 

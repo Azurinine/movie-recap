@@ -1,3 +1,5 @@
+package com.bruhhacks.movie_recap_backend;
+
 public class Episode {
     private final String name;
     private final String rating;
