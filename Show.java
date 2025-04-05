@@ -12,13 +12,22 @@ public class Show extends ShowAbs {
 
     }
 
-    public Episode[] getRecap() {
+    /**
+     * T
+     * @param time String time on how much time needed 
+     * @param seasonNumbers
+     * @return
+     */
+    public Episode[] getRecap(String time, int seasonNumbers []) {
         //TODO
-        // Calls 
+        // Calls Seasons number
 
         return null;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
     public void setTitle(String title) {
         this.title = title;
