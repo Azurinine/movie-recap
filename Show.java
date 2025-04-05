@@ -5,15 +5,20 @@ public class Show extends ShowAbs {
         // Default constructor
     }
     public Show(String title) {
+        //TODO
+
         // Calls API and gets info
         // Gets Show title, creates Episode objects, 
 
     }
 
-    // Getter for title
-    public String getTitle() {
-        return title;
+    public Episode[] getRecap() {
+        //TODO
+        // Calls 
+
+        return null;
     }
+
 
     public void setTitle(String title) {
         this.title = title;
@@ -35,7 +40,5 @@ public class Show extends ShowAbs {
         this.seasons = seasons;
     }
 
-    // Main method for testing
-    // You can remove this if you don't need it
-    // or if you want to test in a different way.
+    
 }
