@@ -1,6 +1,7 @@
 public class Show extends ShowAbs {
 
-    // Constructor
+    private String apiOutput; // API output
+
     public Show(){
         // Default constructor
     }

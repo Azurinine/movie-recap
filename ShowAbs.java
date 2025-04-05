@@ -12,5 +12,4 @@ public abstract class ShowAbs {
     abstract public void setTitle(String title);
     abstract public void setSynopsis(String synopsis);
     abstract public void setSeasons(Seasons[] seasons);
-
 }
