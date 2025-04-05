@@ -1,4 +1,4 @@
-package com.bruhhacks.movie_recap_backend;
+package sever.src.main.java.com.bruhhacks.movie_recap_backend;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -6,7 +6,7 @@ import java.io.*;
 
 public class OMDb {
 
-    public static final String SEARCH_URL = "https://www.omdbapi.com/?apikey=844ebcdd&t=SHOW&Season=SEASON&plot=PLOT";
+    public static final String SEARCH_URL = "https://www.omdbapi.com/?apikey=844ebcdd&t=SHOW&Season=SEASON&plot=full";
 
     public static String sendRequest(String requestURL){
         StringBuffer r = new StringBuffer();
@@ -36,14 +36,15 @@ public class OMDb {
         return r.toString();
     }
 
-    public static String SearchShow(String title, int season_number, String pot){
+    //season_number is what season the user wants --> i.e. season_number = 1 is all 9 episodes of season 1 of arcane
+    public static String SearchShow(String title, int season_number){
         String requestURL = SEARCH_URL.replaceAll("SEASON", (Integer.toString(season_number)))
-            .replaceAll("SHOW", title).replaceAll("PLOT", pot);
+            .replaceAll("SHOW", title);
 
         return sendRequest(requestURL);
     }
     public static void main(String[] args){
-        String jresponse = OMDb.SearchShow("arcane", 1, "short");
+        String jresponse = OMDb.SearchShow("arcane", 1);
         System.out.println(jresponse);
     }
 }

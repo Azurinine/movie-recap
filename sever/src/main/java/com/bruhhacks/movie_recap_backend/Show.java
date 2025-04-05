@@ -1,4 +1,4 @@
-package com.bruhhacks.movie_recap_backend;
+package sever.src.main.java.com.bruhhacks.movie_recap_backend;
 
 public class Show extends ShowAbs {
 
@@ -7,8 +7,8 @@ public class Show extends ShowAbs {
     public Show(){
         // Default constructor
     }
-    public Show(String title, int numberSeason, String pt) {
-        String info = OMDb.SearchShow(title, numberSeason, pt);
+    public Show(String title, int numberSeason) {
+        apiOutput = OMDb.SearchShow(title, numberSeason);
 
         // Calls API and gets info
         // Gets Show title, creates Episode objects, 

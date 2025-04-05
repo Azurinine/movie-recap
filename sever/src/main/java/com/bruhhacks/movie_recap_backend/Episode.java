@@ -1,4 +1,6 @@
-package com.bruhhacks.movie_recap_backend;
+package sever.src.main.java.com.bruhhacks.movie_recap_backend;
+
+
 
 public class Episode {
     private final String name;
