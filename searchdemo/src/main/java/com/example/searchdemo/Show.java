@@ -49,7 +49,7 @@ public class Show extends ShowAbs {
         ArrayList<Episode> temp = new ArrayList<Episode>();
         for(int i = 0; i < reNum; i++){
             temp = seasons[i].getTopEpisode(3);
-            for(int i = 0 i < 3; i++){
+            for(int j = 0 j < 3; i++){
                 topEp.add(temp.get(i));
             }
         }
