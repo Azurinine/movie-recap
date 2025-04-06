@@ -30,7 +30,6 @@ public class Show extends ShowAbs {
             seasons[i] = new Seasons(apiOutput);
         }
  
-
         // Gets Show title, creates Episode objects, 
 
     }
@@ -43,13 +42,22 @@ public class Show extends ShowAbs {
      */
     
     public ArrayList<Episode> getRecap() {
-        // Calls Seasons number
         ArrayList<Episode> topEp = new ArrayList<Episode>();
-        ArrayList<Episode> temp = new ArrayList<Episode>();
-        for(int i = 0; i < reNum; i++){
-            temp = seasons[i].getTopEpisode(3);
-            for(int j = 0; j < 3; i++){
-                topEp.add(temp.get(i));
+        
+        System.out.println("Debug - Getting recap for season count: " + reNum);
+        
+        for(int i = 0; i < reNum; i++) {
+            if (seasons[i] == null) {
+                System.out.println("Debug - Season " + (i+1) + " is null");
+                continue;
+            }
+            
+            ArrayList<Episode> temp = seasons[i].getTopEpisode(3);
+            System.out.println("Debug - Season " + (i+1) + " got " + temp.size() + " episodes");
+            
+            for(int j = 0; j < 3 && j < temp.size(); j++) {
+                topEp.add(temp.get(j));
+                System.out.println("Debug - Added episode: " + temp.get(j));
             }
         }
 
