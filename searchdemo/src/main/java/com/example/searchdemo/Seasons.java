@@ -3,6 +3,8 @@ package com.example.searchdemo;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 public class Seasons {
     private final ArrayList<Episode> episodes;
     private final int seasonNum; 
@@ -27,7 +29,7 @@ public class Seasons {
         Matcher matcher = episodePat.matcher(seasonInfo);
         episodes = new ArrayList<>();
         while (matcher.find()) {
-            Episode newEpisode = new Episode("poop", "yeah", "Hell yeah", matcher.group());
+            Episode newEpisode = new Episode("poop", 1.0, "Hell yeah", matcher.group());
             episodes.add(newEpisode);
         }
 
@@ -35,19 +37,22 @@ public class Seasons {
         name = null;
     }
 
-    // public Episode[] getTopEpisode(){
-        // //TODO get the highest rated episode in the array of episode
-        // ArrayList<Episode> topEpisodes = new ArrayList();
-        // ArrayList<Episode> cEpisodes = episodes;
-        // for(int i = 0; i < episodes.size(); i++){
-
-        // }
-        // return null;
-    // }
-
-    public Episode[] getTopEpisode(int numOfEp){
-        //TODO get a number of top episodes from each "section" of the season
-
+    /*public Episode[] getTopEpisode(){
+        //TODO get the highest rated episode in the array of episode
+        ArrayList<Episode> topEpisodes = new ArrayList();
+        Collections.sort(episodes, Comparator.comparingDouble(Episode::getRating));
+        topEpisodes.append()
         return null;
+    }*/
+
+    public ArrayList<Episode> getTopEpisode(int numOfEp){
+        //TODO get a number of top episodes from each "section" of the season
+        ArrayList<Episode> topEpisodes = new ArrayList<>();
+        Collections.sort(episodes, Comparator.comparingDouble(Episode::getRating));
+        int s = episodes.size();
+        for(int i = 1; i <= numOfEp; i++){
+            topEpisodes.add(episodes.get(s-i));
+        }
+        return topEpisodes;
     }
 }

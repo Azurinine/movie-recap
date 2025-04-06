@@ -2,11 +2,11 @@ package com.example.searchdemo;
 
 public class Episode {
     private final String name;
-    private final String rating;
+    private final double rating;
     private final String summary;
     private final String number;
 
-    public Episode(String name, String rating, String summary, String number) {
+    public Episode(String name, double rating, String summary, String number) {
         this.name = name;
         this.rating = rating;
         this.summary = summary;
@@ -16,7 +16,7 @@ public class Episode {
     public String getName() {
         return name;
     }
-    public String getRating() {
+    public double getRating() {
         return rating;
     }
     public String getSummary() {
