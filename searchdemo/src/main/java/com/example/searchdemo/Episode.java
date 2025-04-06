@@ -27,12 +27,14 @@ public class Episode {
         String synopsis = response.substring(index + 8, index2 - 1);
         return synopsis;
     }
-    public String getNumber() {
-        return number;
         */
         return summary;
     }
     
+    public String getNumber() {
+        return number;
+    }
+
     @Override
     public String toString() {
         return "Episode{" +

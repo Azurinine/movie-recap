@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
+
 public class Seasons {
     public ArrayList<Episode> episodes;
     private int seasonNum;
@@ -47,19 +49,21 @@ public class Seasons {
     }
 
     public ArrayList<Episode> getTopEpisode(int numOfEp){
-        //TODO get a number of top episodes from each "section" of the season
         ArrayList<Episode> topEpisodes = new ArrayList<>();
         Collections.sort(episodes, Comparator.comparing(Episode::getRating));
-        int s = episodes.size();
-        while(topEpisodes.size() != numOfEp){
-            for(int i = 1; i <= episodes.size(); i++){
-                if(episodes.get(s-i).getRating().equals("N/A")){
-                    continue;
-                }
-                else{
-                    topEpisodes.add(episodes.get(s-i));
-                }
+        System.out.println("Debug - Sorted episodes by rating" + episodes);
+        ArrayList<Episode> temp = episodes;
+
+        for (int i = 0; i < temp.size(); i++){
+            if(temp.get(i).getRating().equals("N/A")){
+                temp.remove(i);
+                i--;
             }
+        }
+        System.out.println("Debug - Filtered episodes by rating" + temp);
+        int size = temp.size();
+        for (int i = 1; i <= numOfEp && i < size; i++){
+            topEpisodes.add(temp.get(size - i));
         }
         
         return topEpisodes;
