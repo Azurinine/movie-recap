@@ -51,14 +51,17 @@ public class Seasons {
         ArrayList<Episode> topEpisodes = new ArrayList<>();
         Collections.sort(episodes, Comparator.comparing(Episode::getRating));
         int s = episodes.size();
-        for(int i = 1; i <= numOfEp; i++){
-            if(episodes.get(s-i).getRating().equals("N/A")){
-                continue;
-            }
-            else{
-                topEpisodes.add(episodes.get(s-i));
+        while(topEpisodes.size() != numOfEp){
+            for(int i = 1; i <= episodes.size(); i++){
+                if(episodes.get(s-i).getRating().equals("N/A")){
+                    continue;
+                }
+                else{
+                    topEpisodes.add(episodes.get(s-i));
+                }
             }
         }
+        
         return topEpisodes;
     }
 }

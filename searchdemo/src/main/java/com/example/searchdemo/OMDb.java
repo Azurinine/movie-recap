@@ -82,7 +82,7 @@ public class OMDb {
     }
 
     public static void main(String[] args){
-        /* 
+        
         String jresponse = OMDb.SearchShow("arcane", 1);
         System.out.println(jresponse);
 
@@ -95,14 +95,15 @@ public class OMDb {
         int indx3 = tS.indexOf("\"");
         tS = tS.substring(0,indx3);
         System.out.println(tS);
-        */
+        
 
-        String jresponse2 = OMDb.searchPlot("arcane");
+       /*String jresponse2 = OMDb.searchPlot("arcane");
         System.out.println(jresponse2);
 
         int index3 = jresponse2.indexOf("\"Plot\"");
         int index4 = jresponse2.indexOf(",\"Language\"");
         String syn = jresponse2.substring(index3 + 8, index4 - 1);
         System.out.println(syn);
+        */
     }
 }
