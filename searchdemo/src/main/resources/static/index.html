@@ -41,7 +41,7 @@
           return res.json();
         })
         .then(episodes => {
-          console.log('Episodes:', episodes); // Add this line
+          console.log('Episodes:', episodes);
           resultContainer.innerHTML = '';
 
           if (!Array.isArray(episodes) || episodes.length === 0) {
@@ -49,16 +49,26 @@
             return;
           }
 
-          const episodesHTML = episodes
-            .map(ep => `
-              <div class="episode">
-                <h2>${ep.name || 'Untitled'} (Episode ${ep.number || 'N/A'})</h2>
-                <p><strong>Rating:</strong> ${ep.rating || 'N/A'}</p>
+          // Get poster from first episode
+          const showPoster = episodes[0].poster;
+          
+          const contentHTML = `
+            ${showPoster ? `
+              <div class="show-poster">
+                <img src="${showPoster}" alt="Show Poster">
               </div>
-            `)
-            .join('');
+            ` : ''}
+            <div class="episodes-container">
+              ${episodes.map(ep => `
+                <div class="episode">
+                  <h2>${ep.name || 'Untitled'} (Episode ${ep.number || 'N/A'})</h2>
+                  <p><strong>Rating:</strong> ${ep.rating || 'N/A'}</p>
+                </div>
+              `).join('')}
+            </div>
+          `;
 
-          resultContainer.innerHTML = episodesHTML;
+          resultContainer.innerHTML = contentHTML;
         })
         .catch(err => {
           resultContainer.innerHTML = `
