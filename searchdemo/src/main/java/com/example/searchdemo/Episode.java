@@ -46,6 +46,10 @@ public class Episode {
         return number;
     }
 
+    public String getSeasonNum(){
+        return seasonNum;
+    }
+
     public String getPoster(){
         return poster;
     }

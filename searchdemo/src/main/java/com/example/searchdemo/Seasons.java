@@ -48,7 +48,7 @@ public class Seasons {
         } catch (Exception e) {
             System.err.println("Error parsing season info: " + e.getMessage());
             this.episodes = new ArrayList<>();
-            this.seasonNum = null;
+            this.seasonNum = "Error";
         }
     }
 
