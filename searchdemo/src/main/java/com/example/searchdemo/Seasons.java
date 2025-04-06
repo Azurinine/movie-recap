@@ -3,6 +3,8 @@ package com.example.searchdemo;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 public class Seasons {
     private final ArrayList<Episode> episodes;
     private final int seasonNum; 
@@ -45,9 +47,14 @@ public class Seasons {
         // return null;
     // }
 
-    public Episode[] getTopEpisode(int numOfEp){
+    public ArrayList<Episode> getTopEpisode(int numOfEp){
         //TODO get a number of top episodes from each "section" of the season
-
-        return null;
+        ArrayList<Episode> topEpisodes = new ArrayList<>();
+        Collections.sort(episodes, Comparator.comparing(Episode::getRating));
+        int s = episodes.size();
+        for(int i = 1; i <= numOfEp; i++){
+            topEpisodes.add(episodes.get(s-i));
+        }
+        return topEpisodes;
     }
 }
