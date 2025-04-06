@@ -1,4 +1,4 @@
-package com.example.searchdemo;
+package searchdemo.src.main.java.com.example.searchdemo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

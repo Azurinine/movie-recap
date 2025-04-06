@@ -1,4 +1,4 @@
-package com.example.searchdemo;
+package searchdemo.src.main.java.com.example.searchdemo;
 
 public class Character {
     private String name;
