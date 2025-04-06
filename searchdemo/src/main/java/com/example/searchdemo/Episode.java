@@ -5,12 +5,14 @@ public class Episode {
     private final String rating;
     private final String summary;
     private final String number;
+    private final String poster;
 
-    public Episode(String name, String rating, String summary, String number) {
+    public Episode(String name, String rating, String summary, String number, String poster) {
         this.name = name;
         this.rating = rating;
         this.summary = summary;
         this.number = number;
+        this.poster = poster;
     }
 
     public String getName() {
@@ -33,6 +35,10 @@ public class Episode {
     
     public String getNumber() {
         return number;
+    }
+
+    public String getPoster(){
+        return poster;
     }
 
     @Override

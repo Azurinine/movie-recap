@@ -38,7 +38,7 @@ public class OMDb {
         return r.toString();
     }
 
-    public static String getPlot(String requestURL){
+    public static String getPicture(String requestURL){
         StringBuffer response = new StringBuffer();
 
         try{
@@ -74,16 +74,16 @@ public class OMDb {
         return sendRequest(requestURL);
     }
 
-    public static String searchPlot(String title){
+    public static String searchPicture(String title){
         String requestURL2 = SEARCH_URL2
             .replaceAll("SHOW", title);
 
-        return getPlot(requestURL2);
+        return getPicture(requestURL2);
     }
 
     public static void main(String[] args){
         
-        String jresponse = OMDb.SearchShow("arcane", 1);
+        /*String jresponse = OMDb.SearchShow("arcane", 1);
         System.out.println(jresponse);
 
         System.out.println();
@@ -95,15 +95,16 @@ public class OMDb {
         int indx3 = tS.indexOf("\"");
         tS = tS.substring(0,indx3);
         System.out.println(tS);
+        */
         
 
-       /*String jresponse2 = OMDb.searchPlot("arcane");
+        String jresponse2 = OMDb.searchPicture("arcane");
         System.out.println(jresponse2);
 
-        int index3 = jresponse2.indexOf("\"Plot\"");
-        int index4 = jresponse2.indexOf(",\"Language\"");
-        String syn = jresponse2.substring(index3 + 8, index4 - 1);
+        int index3 = jresponse2.indexOf("\"Poster\"");
+        int index4 = jresponse2.indexOf(",\"Ratings\"");
+        String syn = jresponse2.substring(index3 + 10, index4 - 1);
         System.out.println(syn);
-        */
+        
     }
 }
