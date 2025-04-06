@@ -52,7 +52,7 @@ public class Seasons {
         Collections.sort(episodes, Comparator.comparing(Episode::getRating));
         int s = episodes.size();
         for(int i = 1; i <= numOfEp; i++){
-            if(episodes.get(s-i).equals("N/A")){
+            if(episodes.get(s-i).getRating().equals("N/A")){
                 continue;
             }
             else{
