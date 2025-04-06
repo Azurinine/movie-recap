@@ -18,10 +18,12 @@ public class Seasons {
         String pattern = "\"Episode\":\\s*(1[0-9]|20|[0-9])gm";
         Pattern episodePat = Pattern.compile(pattern);
         Matcher matcher = episodePat.matcher(seasonInfo);
+        episodes = new ArrayList<>();
         while (matcher.find()) {
             Episode newEpisode = new Episode("poop", "yeah", "Hell yeah", matcher.group());
-            
+            episodes.add(newEpisode);
         }
+
         seasonNum = 0;
         name = null;
     }
