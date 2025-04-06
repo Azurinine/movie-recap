@@ -1,4 +1,4 @@
-package searchdemo.src.main.java.com.example.searchdemo;
+package com.example.searchdemo;
 
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;

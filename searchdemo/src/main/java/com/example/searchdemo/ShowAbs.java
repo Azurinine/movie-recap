@@ -1,6 +1,4 @@
-package searchdemo.src.main.java.com.example.searchdemo;
-
-
+package com.example.searchdemo;
 
 public abstract class ShowAbs {
     // Properties

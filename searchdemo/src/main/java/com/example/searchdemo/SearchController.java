@@ -1,6 +1,6 @@
-package searchdemo.src.main.java.com.example.searchdemo;
+package com.example.searchdemo;
 
-import org.springframewjaork.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
