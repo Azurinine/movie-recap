@@ -1,3 +1,5 @@
+package com.example.searchdemo;
+
 public abstract class ShowAbs {
     // Properties
     protected String title;

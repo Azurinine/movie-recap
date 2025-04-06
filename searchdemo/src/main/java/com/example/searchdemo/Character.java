@@ -1,3 +1,5 @@
+package com.example.searchdemo;
+
 public class Character {
     private String name;
     private String summary;

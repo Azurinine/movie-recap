@@ -1,3 +1,5 @@
+package com.example.searchdemo;
+
 public class Episode {
     private final String name;
     private final String rating;

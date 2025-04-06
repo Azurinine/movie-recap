@@ -1,3 +1,5 @@
+package com.example.searchdemo;
+
 public class Show extends ShowAbs {
 
     public Show(){

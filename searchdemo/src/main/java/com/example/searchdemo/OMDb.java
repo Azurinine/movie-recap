@@ -1,3 +1,5 @@
+package com.example.searchdemo;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;

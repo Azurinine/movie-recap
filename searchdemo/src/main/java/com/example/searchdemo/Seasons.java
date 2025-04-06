@@ -1,3 +1,5 @@
+package com.example.searchdemo;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ public class Seasons {
     // private Character[] chars; 
 
     public Seasons(){
-        this.seasonNum = null;
+        this.seasonNum = 0;
         this.name = null;
         this.episodes = null;
     }
@@ -33,17 +35,15 @@ public class Seasons {
         name = null;
     }
 
-    public Episode[] getTopEpisode(){
-        //TODO get the highest rated episode in the array of episode
-        ArrayList<Episode> topEpisodes = new ArrayList();
-        ArrayList<Episode> cEpisodes = episodes;
-        double
-        for(int i = 0; i < episodes.size(); i++){
+    // public Episode[] getTopEpisode(){
+        // //TODO get the highest rated episode in the array of episode
+        // ArrayList<Episode> topEpisodes = new ArrayList();
+        // ArrayList<Episode> cEpisodes = episodes;
+        // for(int i = 0; i < episodes.size(); i++){
 
-        }
-        return null;
-        
-    }
+        // }
+        // return null;
+    // }
 
     public Episode[] getTopEpisode(int numOfEp){
         //TODO get a number of top episodes from each "section" of the season
