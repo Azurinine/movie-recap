@@ -10,47 +10,47 @@
 
   <div class="container">
     <h1>Search Episodes</h1>
-    <input type="text" id="searchInput" placeholder="Enter search query" />
+    <input type="text" id="showTitleInput" placeholder="Enter Show Title" />
+    <input type="number" id="seasonNumberInput" placeholder="Enter Season Number" />
     <button onclick="performSearch()">Search</button>
     <div id="episodesList" class="episodes-list"></div>
   </div>
 
   <script>
-    // Function to perform the search and display results
     function performSearch() {
-      const query = document.getElementById("searchInput").value;
-
-      fetch(`/api/search?query=${encodeURIComponent(query)}`)
-        .then(res => res.json())  // Parse the JSON response
+      const title = document.getElementById("showTitleInput").value;
+      const season = document.getElementById("seasonNumberInput").value;
+  
+      fetch(`/api/search?title=${encodeURIComponent(title)}&season=${encodeURIComponent(season)}`)
+        .then(res => res.json())
         .then(episodes => {
-          const episodesContainer = document.getElementById("episodesList");
-          episodesContainer.innerHTML = '';  // Clear previous results
-
+          const resultContainer = document.getElementById("result");
+          resultContainer.innerHTML = '';
+  
           if (episodes.length === 0) {
-            episodesContainer.innerHTML = '<p>No episodes found.</p>';
+            resultContainer.innerHTML = '<p>No episodes found.</p>';
             return;
           }
-
-          // Loop through each episode and create HTML elements to display
-          episodes.forEach(episode => {
-            const episodeElement = document.createElement("div");
-            episodeElement.classList.add("episode");
-
-            episodeElement.innerHTML = `
-              <h2>${episode.name} (Episode ${episode.number})</h2>
-              <p><strong>Rating:</strong> ${episode.rating}</p>
-              <p><strong>Summary:</strong> ${episode.summary}</p>
+  
+          episodes.forEach(ep => {
+            const epDiv = document.createElement('div');
+            epDiv.classList.add('episode');
+  
+            epDiv.innerHTML = `
+              <h2>${ep.name} (Episode ${ep.number})</h2>
+              <p><strong>Rating:</strong> ${ep.rating}</p>
+              <p><strong>Summary:</strong> ${ep.summary}</p>
             `;
-
-            // Append the episode element to the list
-            episodesContainer.appendChild(episodeElement);
+  
+            resultContainer.appendChild(epDiv);
           });
         })
         .catch(err => {
-          document.getElementById("episodesList").innerHTML = 'Error fetching episodes: ' + err;
+          document.getElementById("result").innerText = "Error: " + err;
         });
     }
   </script>
+  
 
 </body>
 </html>

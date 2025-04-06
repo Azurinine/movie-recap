@@ -76,3 +76,12 @@ button:hover {
 .episode strong {
   font-weight: bold;
 }
+
+input[type="text"], input[type="number"] {
+  width: 45%;
+  padding: 10px;
+  margin: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}

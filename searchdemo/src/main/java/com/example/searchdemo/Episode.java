@@ -2,7 +2,7 @@ package com.example.searchdemo;
 
 public class Episode {
     private final String name;
-    private final double rating;
+    private final String rating;
     private final String summary;
     private final String number;
 
@@ -16,7 +16,7 @@ public class Episode {
     public String getName() {
         return name;
     }
-    public double getRating() {
+    public String getRating() {
         return rating;
     }
     public String getSummary() {
