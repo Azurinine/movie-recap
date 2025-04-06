@@ -5,12 +5,18 @@ public class Episode {
     private final String rating;
     private final String summary;
     private final String number;
+    private String seasonNum;
 
-    public Episode(String name, String rating, String summary, String number) {
+    public Episode(String name, String rating, String summary, String number, String seasonNum) {
         this.name = name;
         this.rating = rating;
         this.summary = summary;
         this.number = number;
+        this.seasonNum = seasonNum;
+    }
+
+    public String getSNum(){
+        return seasonNum;
     }
 
     public String getName() {

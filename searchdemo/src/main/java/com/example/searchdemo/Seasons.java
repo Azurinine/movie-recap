@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 
 public class Seasons {
     public ArrayList<Episode> episodes;
-    private int seasonNum;
+    private String seasonNum;
 
     public Seasons() {
         this.seasonNum = 0;
@@ -26,7 +26,7 @@ public class Seasons {
             JsonObject jsonObject = gson.fromJson(seasonInfo, JsonObject.class);
             
             // Get season number
-            seasonNum = Integer.parseInt(jsonObject.get("Season").getAsString());
+            seasonNum = jsonObject.get("Season").getAsString();
             
             // Get episodes array
             JsonArray episodesArray = jsonObject.getAsJsonArray("Episodes");
@@ -38,7 +38,8 @@ public class Seasons {
                     ep.get("Title").getAsString(),
                     ep.get("imdbRating").getAsString(),
                     "No summary available",
-                    ep.get("Episode").getAsString()
+                    ep.get("Episode").getAsString(),
+                    seasonNum
                 ));
             }
         } catch (Exception e) {
