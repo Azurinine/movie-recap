@@ -22,13 +22,17 @@ public class Seasons {
         /*Parse through the list given from the api key. Then get each episode, their name, and rating and create a new episodes 
          * object. 
          */
-        String pattern = "\"Episode\":\\s*(1[0-9]|20|[0-9])gm";
+        String pattern = "\"\\\"Episode\\\"\\:\\\"+[1-9]\"gm";
         Pattern episodePat = Pattern.compile(pattern);
         Matcher matcher = episodePat.matcher(seasonInfo);
         episodes = new ArrayList<>();
+        ArrayList<String> epNum = new ArrayList<>();
+
         while (matcher.find()) {
-            Episode newEpisode = new Episode("poop", "yeah", "Hell yeah", matcher.group());
-            episodes.add(newEpisode);
+
+            String episodeNum = matcher.group().substring(11);
+            //Episode newEpisode = new Episode("poop", "yeah", "Hell yeah", episodeNum);
+            //episodes.add(newEpisode);
         }
 
         seasonNum = 0;
