@@ -47,5 +47,13 @@ public class OMDb {
         System.out.println(jresponse);
 
         System.out.println();
+
+        int idx = jresponse.indexOf("\"totalSeasons\":\"") + 16;
+        int idx2 = jresponse.indexOf("Episodes");
+
+        String tS = jresponse.substring(idx, idx2);
+        int indx3 = tS.indexOf("\"");
+        tS = tS.substring(0,indx3);
+        System.out.println(tS);
     }
 }
