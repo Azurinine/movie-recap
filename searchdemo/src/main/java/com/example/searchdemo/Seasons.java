@@ -53,41 +53,43 @@ public class Seasons {
         }
     }
 
-    public ArrayList<Episode> getTopEpisode(int numOfEp){
+    public ArrayList<Episode> getTopEpisode(int numOfEp) {
         ArrayList<Episode> topEpisodes = new ArrayList<>();
-        Collections.sort(episodes, Comparator.comparing(Episode::getRating));
-        System.out.println("Debug - Sorted episodes by rating" + episodes);
-        ArrayList<Episode> temp = episodes;
-
-
-        for (int i = 0; i < temp.size(); i++){
-            if(temp.get(i).getRating().equals("N/A")){
-                temp.remove(i);
-                i--;
+        ArrayList<Episode> temp = new ArrayList<>(episodes); // Create a new copy
+        
+        // First check if all ratings are N/A
+        boolean allNA = true;
+        for (Episode ep : episodes) {
+            if (!ep.getRating().equals("N/A")) {
+                allNA = false;
+                break;
             }
         }
-
-        if(temp.size() == 0){
-            if(numOfEp == 1){
-                temp.add(episodes.get(episodes.size() - 1));
+        
+        if (allNA) {
+            // Handle the case where all ratings are N/A
+            if (numOfEp == 1) {
+                topEpisodes.add(episodes.get(episodes.size() - 1));
+            } else if (numOfEp == 3) {
+                topEpisodes.add(episodes.get(0));
+                topEpisodes.add(episodes.get(episodes.size()/2));
+                topEpisodes.add(episodes.get(episodes.size() - 1));
+            } else if (numOfEp == 5) {
+                topEpisodes.add(episodes.get(0));
+                topEpisodes.add(episodes.get(episodes.size()/4));
+                topEpisodes.add(episodes.get(episodes.size()/2));
+                topEpisodes.add(episodes.get(3 * episodes.size()/4));
+                topEpisodes.add(episodes.get(episodes.size() - 1));
             }
-            else if(numOfEp == 3){
-                temp.add(episodes.get(0));
-                temp.add(episodes.get(episodes.size()/2));
-                temp.add(episodes.get(episodes.size() - 1));
-            }
-            else if(numOfEp == 5){
-                temp.add(episodes.get(0));
-                temp.add(episodes.get(1));
-                temp.add(episodes.get(episodes.size()/2));
-                temp.add(episodes.get(episodes.size() - 2));
-                temp.add(episodes.get(episodes.size() - 1));
-            }
-            
+            return topEpisodes;
         }
-        System.out.println("Debug - Filtered episodes by rating" + temp);
+        
+        // If not all N/A, proceed with sorting and filtering
+        Collections.sort(temp, Comparator.comparing(Episode::getRating));
+        temp.removeIf(ep -> ep.getRating().equals("N/A"));
+        
         int size = temp.size();
-        for (int i = 1; i <= numOfEp && i < size; i++){
+        for (int i = 1; i <= numOfEp && i <= size; i++) {
             topEpisodes.add(temp.get(size - i));
         }
         

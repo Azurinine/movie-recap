@@ -10,7 +10,7 @@ public class SearchEngine {
             Seasons test = new Seasons(apiOutput, query);
 
             int timeNum = 3;
-            if (time.equals("very little")) timeNum = 1;
+            if (time.equals("very little")) timeNum = 2;
             else if (time.equals("a little")) timeNum = 3;
             else if (time.equals("a lot")) timeNum = 5;
             
