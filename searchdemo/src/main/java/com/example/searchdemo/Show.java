@@ -32,14 +32,15 @@ public class Show extends ShowAbs {
     }
 
     /**
-     * T
+     * 
      * @param time String time on how much time needed 
      * @param seasonNumbers
      * @return
      */
-    public Episode[] getRecap(String time, int seasonNumbers []) {
+    public ArrayList<Episode> getRecap(Seasons[] reSeasons) {
         //TODO
         // Calls Seasons number
+        
 
         return null;
     }

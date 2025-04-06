@@ -6,7 +6,7 @@ public class Episode {
     private final String summary;
     private final String number;
 
-    public Episode(String name, double rating, String summary, String number) {
+    public Episode(String name, String rating, String summary, String number) {
         this.name = name;
         this.rating = rating;
         this.summary = summary;
