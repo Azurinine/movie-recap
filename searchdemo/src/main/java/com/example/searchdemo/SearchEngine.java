@@ -10,7 +10,7 @@ public class SearchEngine {
             Seasons test = new Seasons(apiOutput);
             
             Show currentShow = new Show(query, recapNumber);
-            System.out.println("Debug - Current Season 1 Length:" + currentShow.seasons[1].episodes.size());
+            System.out.println("Debug - Current Season 1 Length:" + currentShow.seasons[0].episodes.size());
 
             ArrayList<Episode> recap = currentShow.getRecap();
             System.out.println("===========================================");
@@ -32,7 +32,7 @@ public class SearchEngine {
                 return new ArrayList<>();
             }
             
-            return test.episodes;
+            return recap;
         } catch (Exception e) {
             System.out.println("Error in runSearch: " + e.getMessage());
             e.printStackTrace();

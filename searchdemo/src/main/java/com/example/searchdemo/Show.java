@@ -9,8 +9,8 @@ public class Show extends ShowAbs {
     }
 
     public Show(String title, int recapNumber) {
-        // Initalization
-        reNum = recapNumber;
+        // Initialization
+        reNum = recapNumber;  // This is correct
         String apiOutput = OMDb.SearchShow(title, 1);
         int idx = apiOutput.indexOf("\"totalSeasons\":\"") + 16;
         int idx2 = apiOutput.indexOf("Episodes");
@@ -19,19 +19,17 @@ public class Show extends ShowAbs {
 
         this.title = title;
         this.totalSeasons = Integer.valueOf(tS.substring(0,indx3));
+        
+        // Important: Only initialize seasons up to recapNumber, not totalSeasons
+        seasons = new Seasons[recapNumber];  // Changed from totalSeasons
 
-        seasons = new Seasons[totalSeasons];
-
-        for (int i = 0; i < totalSeasons; i++) {
-            // Calls API and gets info
-            apiOutput = OMDb.SearchShow(title, i);
-
+        // Only get seasons up to recapNumber
+        for (int i = 0; i < recapNumber; i++) {  // Changed from totalSeasons
+            // Calls API and gets info for season i+1
+            apiOutput = OMDb.SearchShow(title, i + 1);  // Added +1 since seasons start at 1
             // Creates Seasons object
             seasons[i] = new Seasons(apiOutput);
         }
- 
-        // Gets Show title, creates Episode objects, 
-
     }
 
     /**
