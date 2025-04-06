@@ -24,6 +24,8 @@ public class Seasons {
         /*Parse through the list given from the api key. Then get each episode, their name, and rating and create a new episodes 
          * object. 
          */
+        String pattern = "\"Episode\":\\s*(1[0-9]|20|[0-9])gm";
+        Pattern episodePat = Pattern.compile(pattern);
         String seasonPattern = "\"Season\":\"([^\"]+)\"gm";
         String pattern = "\"\\\"Episode\\\"\\:\\\"+[1-9]\"gm";
         
@@ -31,8 +33,6 @@ public class Seasons {
         episodes = new ArrayList<>();
         Pattern episodePat = Pattern.compile(seasonPattern);
         Matcher matcher = episodePat.matcher(seasonInfo);
-        ArrayList<String> epNum = new ArrayList<>();
-
         String epNamepattern = "\"Title\":\"([^\"]+)\"gm";
         
         ArrayList<String> epTitleName = new ArrayList<>();
@@ -44,43 +44,28 @@ public class Seasons {
         episodePat = Pattern.compile(pattern);
         matcher = episodePat.matcher(seasonInfo);
         while (matcher.find()) {
-            String episodeNum = matcher.group().substring(11);
-            //Episode newEpisode = new Episode("poop", "yeah", "Hell yeah", episodeNum);
-            //episodes.add(newEpisode);
-            epNum.add(episodeNum);
+            Episode newEpisode = new Episode("poop", "yeah", "Hell yeah", matcher.group());
+            episodes.add(newEpisode);
         }
-        episodePat = Pattern.compile(epNamepattern);
-        matcher = episodePat.matcher(seasonInfo);
-        name = matcher.group(1);
-        while (matcher.find()) {
-            
-            String episodeName = matcher.group();
-            epTitleName.add(episodeName);
-        }
-        episodePat = Pattern.compile(imdBString);
-        matcher = episodePat.matcher(seasonInfo);
-        while (matcher.find()) {
-            String episodeRate = matcher.group();
-            imdbRating.add(episodeRate);
-        }
-        
-        for(int i=0;i<epNum.size();i++){
-            episodes.add(new Episode(epNum.get(i),Double.parseDouble(imdbRating.get(i)),"ig",epNum.get(i)));
-        }
+
+        seasonNum = 0;
+        name = null;
     }
 
-    /*public Episode[] getTopEpisode(){
-        //TODO get the highest rated episode in the array of episode
-        ArrayList<Episode> topEpisodes = new ArrayList();
-        Collections.sort(episodes, Comparator.comparingDouble(Episode::getRating));
-        topEpisodes.append()
-        return null;
-    }*/
+    // public Episode[] getTopEpisode(){
+        // //TODO get the highest rated episode in the array of episode
+        // ArrayList<Episode> topEpisodes = new ArrayList();
+        // ArrayList<Episode> cEpisodes = episodes;
+        // for(int i = 0; i < episodes.size(); i++){
+
+        // }
+        // return null;
+    // }
 
     public ArrayList<Episode> getTopEpisode(int numOfEp){
         //TODO get a number of top episodes from each "section" of the season
         ArrayList<Episode> topEpisodes = new ArrayList<>();
-        Collections.sort(episodes, Comparator.comparingDouble(Episode::getRating));
+        Collections.sort(episodes, Comparator.comparing(Episode::getRating));
         int s = episodes.size();
         for(int i = 1; i <= numOfEp; i++){
             topEpisodes.add(episodes.get(s-i));
