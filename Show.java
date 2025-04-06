@@ -5,21 +5,25 @@ public class Show extends ShowAbs {
     }
 
     public Show(String title, int [] numberSeason) {
-        String apiOutput;
+        String apiOutput = OMDb.SearchShow(title, 1);;
         this.title = title;
-        apiOutput = OMDb.SearchShow(title, 1);
-        for (int i : numberSeason) {
-            // Calls API and gets info
-            apiOutput = OMDb.SearchShow(title, i);
 
-            
-
-        }
         int idx = apiOutput.indexOf("\"totalSeasons\":\"") + 16;
         int idx2 = apiOutput.indexOf("Episodes");
         String tS = apiOutput.substring(idx, idx2);
         int indx3 = tS.indexOf("\"");
         totalSeasons = Integer.valueOf(tS.substring(0,indx3));
+
+        seasons = new Seasons[totalSeasons];
+
+        for (int i = 0; i < totalSeasons; i++) {
+            // Calls API and gets info
+            apiOutput = OMDb.SearchShow(title, i);
+
+            // Creates Seasons object
+            seasons[i] = new Seasons(apiOutput);
+        }
+ 
 
         // Gets Show title, creates Episode objects, 
 
