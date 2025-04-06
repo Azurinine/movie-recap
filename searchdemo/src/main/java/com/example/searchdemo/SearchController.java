@@ -9,8 +9,8 @@ import java.util.List;
 public class SearchController {
 
     @GetMapping("/search")
-    public List<Episode> search(@RequestParam String title, @RequestParam int season) {
-        return SearchEngine.runSearch(title, season);
+    public List<Episode> search(@RequestParam String title, @RequestParam int season, @RequestParam String time) {
+        return SearchEngine.runSearch(title, season, time);
     }
 
 }

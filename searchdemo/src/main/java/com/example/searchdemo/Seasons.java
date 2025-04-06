@@ -22,6 +22,7 @@ public class Seasons {
     public Seasons(String seasonInfo, String show_name) {
         episodes = new ArrayList<>();
         s_name = show_name;
+
         
         try {
             Gson gson = new Gson();
@@ -48,7 +49,6 @@ public class Seasons {
         } catch (Exception e) {
             System.err.println("Error parsing season info: " + e.getMessage());
             this.episodes = new ArrayList<>();
-            this.seasonNum = "Error";
             this.seasonNum = "Error";
         }
     }

@@ -19,6 +19,12 @@
       <div class="search-form">
         <input type="text" id="showTitleInput" placeholder="Enter Show Title" />
         <input type="number" id="seasonNumberInput" placeholder="Enter Season Number" />
+        <select id="timeSelection" class="time-dropdown">
+          <option value="">Select Time Available</option>
+          <option value="a lot">A lot</option>
+          <option value="a little">A little</option>
+          <option value="very little">Very little</option>
+        </select>
         <button onclick="performSearch()">Search</button>
       </div>
     </div>
@@ -30,18 +36,19 @@
     function performSearch() {
       const title = document.getElementById("showTitleInput").value;
       const season = document.getElementById("seasonNumberInput").value;
+      const time = document.getElementById("timeSelection").value;
       const resultContainer = document.getElementById("episodesList");
       
       // Input validation
-      if (!title || !season) {
-        resultContainer.innerHTML = '<p class="error">Please enter both show title and season number.</p>';
+      if (!title || !season || !time) {
+        resultContainer.innerHTML = '<p class="error">Please fill in all fields.</p>';
         return;
       }
 
       // Show loading state
       resultContainer.innerHTML = '<p>Loading...</p>';
 
-      fetch(`/api/search?title=${encodeURIComponent(title)}&season=${encodeURIComponent(season)}`)
+      fetch(`/api/search?title=${encodeURIComponent(title)}&season=${encodeURIComponent(season)}&time=${encodeURIComponent(time)}`)
         .then(res => {
           if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
