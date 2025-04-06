@@ -46,50 +46,14 @@ public class Seasons {
         }
     }
 
-    public ArrayList<Episode> getTopEpisode(int numOfEp) {
+    public ArrayList<Episode> getTopEpisode(int numOfEp){
+        //TODO get a number of top episodes from each "section" of the season
         ArrayList<Episode> topEpisodes = new ArrayList<>();
-        
-        // Check for null or empty episodes list
-        if (episodes == null || episodes.isEmpty()) {
-            System.out.println("Debug: No episodes available to sort");
-            return topEpisodes;
+        Collections.sort(episodes, Comparator.comparing(Episode::getRating));
+        int s = episodes.size();
+        for(int i = 1; i <= numOfEp; i++){
+            topEpisodes.add(episodes.get(s-i));
         }
-
-        try {
-            // Sort episodes by rating
-            Collections.sort(episodes, (e1, e2) -> {
-                // Handle null ratings
-                if (e1 == null || e2 == null || e1.getRating() == null || e2.getRating() == null) {
-                    return 0;
-                }
-                
-                // Handle N/A ratings
-                if (e1.getRating().equals("N/A")) return 1;
-                if (e2.getRating().equals("N/A")) return -1;
-                
-                try {
-                    // Compare ratings as doubles
-                    return Double.compare(
-                        Double.parseDouble(e2.getRating()), 
-                        Double.parseDouble(e1.getRating())
-                    );
-                } catch (NumberFormatException e) {
-                    System.out.println("Debug: Invalid rating format: " + e1.getRating() + " or " + e2.getRating());
-                    return 0;
-                }
-            });
-            
-            // Get top episodes
-            int numToGet = Math.min(numOfEp, episodes.size());
-            for (int i = 0; i < numToGet; i++) {
-                topEpisodes.add(episodes.get(i));
-                System.out.println("Debug: Added episode " + (i+1) + ": " + episodes.get(i));
-            }
-        } catch (Exception e) {
-            System.out.println("Debug: Error in getTopEpisode: " + e.getMessage());
-            e.printStackTrace();
-        }
-        
         return topEpisodes;
     }
 }

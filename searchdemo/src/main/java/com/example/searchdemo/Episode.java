@@ -20,10 +20,17 @@ public class Episode {
         return rating;
     }
     public String getSummary() {
-        return summary;
+        /*
+        String response = OMDb.searchPlot(name);
+        int index = response.indexOf("\"Plot\"");
+        int index2 = response.indexOf(",\"Language\"");
+        String synopsis = response.substring(index + 8, index2 - 1);
+        return synopsis;
     }
     public String getNumber() {
         return number;
+        */
+        return summary;
     }
     
     @Override
