@@ -59,11 +59,17 @@ public class Seasons {
         System.out.println("Debug - Sorted episodes by rating" + episodes);
         ArrayList<Episode> temp = episodes;
 
+
         for (int i = 0; i < temp.size(); i++){
             if(temp.get(i).getRating().equals("N/A")){
                 temp.remove(i);
                 i--;
             }
+        }
+        if(temp.get(0) == null){
+            temp.add(episodes.get(0));
+            temp.add(episodes.get(episodes.size()/2));
+            temp.add(episode.get(episodes.size() - 1))
         }
         System.out.println("Debug - Filtered episodes by rating" + temp);
         int size = temp.size();
