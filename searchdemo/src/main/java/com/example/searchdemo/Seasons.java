@@ -69,7 +69,7 @@ public class Seasons {
 
         if(temp.get(0) == null){
             if(numOfEp == 1){
-                temp.add(episdoes.get(episodes.size() - 1))
+                temp.add(episdoes.get(episodes.size() - 1));
             }
             else if(numOfEp == 3){
                 temp.add(episodes.get(0));
