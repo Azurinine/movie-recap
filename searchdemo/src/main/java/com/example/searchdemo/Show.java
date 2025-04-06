@@ -28,7 +28,7 @@ public class Show extends ShowAbs {
             // Calls API and gets info for season i+1
             apiOutput = OMDb.SearchShow(title, i + 1);  // Added +1 since seasons start at 1
             // Creates Seasons object
-            seasons[i] = new Seasons(apiOutput);
+            seasons[i] = new Seasons(apiOutput,title);
         }
     }
 

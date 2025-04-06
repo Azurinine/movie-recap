@@ -7,7 +7,7 @@ public class SearchEngine {
     public static ArrayList<Episode> runSearch(String query, int recapNumber) {
         try {
             String apiOutput = OMDb.SearchShow(query, recapNumber);
-            Seasons test = new Seasons(apiOutput);
+            Seasons test = new Seasons(apiOutput, query);
             
             Show currentShow = new Show(query, recapNumber);
             System.out.println("Debug - Current Season 1 Length:" + currentShow.seasons[0].episodes.size());

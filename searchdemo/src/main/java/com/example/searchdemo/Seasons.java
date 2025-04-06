@@ -7,26 +7,28 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 
 public class Seasons {
     public ArrayList<Episode> episodes;
-    private int seasonNum;
+    private String seasonNum;
+    private String s_name;
 
     public Seasons() {
-        this.seasonNum = 0;
+        this.seasonNum = null;
         this.episodes = new ArrayList<>();
+        this.s_name = null;
     }
 
-    public Seasons(String seasonInfo) {
+    public Seasons(String seasonInfo, String show_name) {
         episodes = new ArrayList<>();
+        s_name = show_name;
         
         try {
             Gson gson = new Gson();
             JsonObject jsonObject = gson.fromJson(seasonInfo, JsonObject.class);
             
             // Get season number
-            seasonNum = Integer.parseInt(jsonObject.get("Season").getAsString());
+            seasonNum = jsonObject.get("Season").getAsString();
             
             // Get episodes array
             JsonArray episodesArray = jsonObject.getAsJsonArray("Episodes");
@@ -38,13 +40,15 @@ public class Seasons {
                     ep.get("Title").getAsString(),
                     ep.get("imdbRating").getAsString(),
                     "No summary available",
-                    ep.get("Episode").getAsString()
+                    ep.get("Episode").getAsString(),
+                    seasonNum,
+                    s_name
                 ));
             }
         } catch (Exception e) {
             System.err.println("Error parsing season info: " + e.getMessage());
             this.episodes = new ArrayList<>();
-            this.seasonNum = 0;
+            this.seasonNum = null;
         }
     }
 
