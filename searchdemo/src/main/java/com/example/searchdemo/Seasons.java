@@ -14,7 +14,7 @@ public class Seasons {
     private String s_name;
 
     public Seasons() {
-        this.seasonNum = null;
+        this.seasonNum = "N/A";
         this.episodes = new ArrayList<>();
         this.s_name = null;
     }
@@ -48,6 +48,7 @@ public class Seasons {
         } catch (Exception e) {
             System.err.println("Error parsing season info: " + e.getMessage());
             this.episodes = new ArrayList<>();
+            this.seasonNum = "Error";
             this.seasonNum = "Error";
         }
     }
