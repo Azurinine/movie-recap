@@ -7,6 +7,11 @@ public class Seasons {
     private final String name; 
     // private Character[] chars; 
 
+    public Seasons(){
+        this.seasonNum = null;
+        this.name = null;
+        this.episodes = null;
+    }
 
     public Seasons(String seasonInfo) {
         // TODO
@@ -30,7 +35,12 @@ public class Seasons {
 
     public Episode[] getTopEpisode(){
         //TODO get the highest rated episode in the array of episode
+        ArrayList<Episode> topEpisodes = new ArrayList();
+        ArrayList<Episode> cEpisodes = episodes;
+        double
+        for(int i = 0; i < episodes.size(); i++){
 
+        }
         return null;
         
     }
