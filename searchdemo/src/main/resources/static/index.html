@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Episode Search</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div class="container">
     <h1>Search Episodes</h1>
+    
     <input type="text" id="showTitleInput" placeholder="Enter Show Title" />
     <input type="number" id="seasonNumberInput" placeholder="Enter Season Number" />
     <button onclick="performSearch()">Search</button>
+    
     <div id="episodesList" class="episodes-list"></div>
   </div>
 
@@ -20,37 +22,36 @@
     function performSearch() {
       const title = document.getElementById("showTitleInput").value;
       const season = document.getElementById("seasonNumberInput").value;
-  
+
       fetch(`/api/search?title=${encodeURIComponent(title)}&season=${encodeURIComponent(season)}`)
         .then(res => res.json())
         .then(episodes => {
-          const resultContainer = document.getElementById("result");
+          const resultContainer = document.getElementById("episodesList");
           resultContainer.innerHTML = '';
-  
+
           if (episodes.length === 0) {
             resultContainer.innerHTML = '<p>No episodes found.</p>';
             return;
           }
-  
+
           episodes.forEach(ep => {
             const epDiv = document.createElement('div');
             epDiv.classList.add('episode');
-  
+
             epDiv.innerHTML = `
               <h2>${ep.name} (Episode ${ep.number})</h2>
               <p><strong>Rating:</strong> ${ep.rating}</p>
               <p><strong>Summary:</strong> ${ep.summary}</p>
             `;
-  
+
             resultContainer.appendChild(epDiv);
           });
         })
         .catch(err => {
-          document.getElementById("result").innerText = "Error: " + err;
+          document.getElementById("episodesList").innerText = "Error: " + err;
         });
     }
   </script>
-  
 
 </body>
 </html>
