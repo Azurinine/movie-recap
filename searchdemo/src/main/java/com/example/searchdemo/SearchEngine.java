@@ -15,6 +15,7 @@ public class SearchEngine {
         // Output: ArrayList of Episode objects
 
         String apiOutput = OMDb.SearchShow(query, 1);
+        
         ArrayList<Episode> episodes = new ArrayList<>();
         episodes.add(new Episode(String.valueOf(recapNumber), "9.0", "Summary of episode 1", "1"));
         episodes.add(new Episode("Episode 2", "8.5", "Summary of episode 2", "2"));

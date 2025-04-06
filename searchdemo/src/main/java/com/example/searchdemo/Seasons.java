@@ -18,7 +18,6 @@ public class Seasons {
     }
 
     public Seasons(String seasonInfo) {
-        // TODO
         
         // Pareses String and creates Episode Objects and appends to the array
         /*Parse through the list given from the api key. Then get each episode, their name, and rating and create a new episodes 
@@ -68,21 +67,9 @@ public class Seasons {
             episodes.add(new Episode(epNum.get(i),imdbRating.get(i),"ig",epNum.get(i)));
         }
     }
-
     
 
-    // public Episode[] getTopEpisode(){
-        // //TODO get the highest rated episode in the array of episode
-        // ArrayList<Episode> topEpisodes = new ArrayList();
-        // ArrayList<Episode> cEpisodes = episodes;
-        // for(int i = 0; i < episodes.size(); i++){
-
-        // }
-        // return null;
-    // }
-
     public ArrayList<Episode> getTopEpisode(int numOfEp){
-        //TODO get a number of top episodes from each "section" of the season
         ArrayList<Episode> topEpisodes = new ArrayList<>();
         Collections.sort(episodes, Comparator.comparing(Episode::getRating));
         int s = episodes.size();
