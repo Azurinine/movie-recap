@@ -44,8 +44,10 @@ public class Show extends ShowAbs {
     public ArrayList<Episode> getRecap() {
         //TODO
         // Calls Seasons number
+        ArrayList<Episode>
         for(int i = 0; i < reNum; i++){
-            
+            seasons[i].getTopEpisode(3);
+
         }
 
         return null;
