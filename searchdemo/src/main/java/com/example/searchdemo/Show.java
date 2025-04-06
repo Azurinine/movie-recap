@@ -43,7 +43,6 @@ public class Show extends ShowAbs {
      */
     
     public ArrayList<Episode> getRecap() {
-        //TODO
         // Calls Seasons number
         ArrayList<Episode> topEp = new ArrayList<Episode>();
         ArrayList<Episode> temp = new ArrayList<Episode>();
