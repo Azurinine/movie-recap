@@ -129,7 +129,7 @@ button:hover {
 
 .season-group {
   margin-bottom: 1rem;
-  border: 1px solid #ff0000;
+  border: 1px solid #494747;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -137,7 +137,7 @@ button:hover {
 .season-header {
   width: 100%;
   padding: 1rem;
-  background-color: #f8f9fa;
+  background-color: #000000;
   border: none;
   text-align: left;
   font-size: 1.1rem;

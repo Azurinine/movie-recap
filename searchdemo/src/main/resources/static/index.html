@@ -84,7 +84,7 @@
                   <button class="season-header" onclick="toggleSeason(this)">
                     Season ${season} <span class="toggle-icon">▶</span>
                   </button>
-                  <div class="season-episodes">
+                  <div class="season-episodes collapsed">
                     ${seasonEpisodes.map(ep => `
                       <div class="episode">
                         <h2>${ep.name || 'Untitled'} (Episode ${ep.number || 'N/A'})</h2>
