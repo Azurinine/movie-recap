@@ -52,7 +52,7 @@ public class Seasons {
     public ArrayList<Episode> getTopEpisode(int numOfEp){
         //TODO get a number of top episodes from each "section" of the season
         ArrayList<Episode> topEpisodes = new ArrayList<>();
-        Collections.sort(episodes, Comparator.comparingDouble(Episode::getRating));
+        Collections.sort(episodes, Comparator.comparing(Episode::getRating));
         int s = episodes.size();
         for(int i = 1; i <= numOfEp; i++){
             topEpisodes.add(episodes.get(s-i));
