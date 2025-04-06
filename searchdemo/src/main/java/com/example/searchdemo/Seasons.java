@@ -67,21 +67,21 @@ public class Seasons {
             }
         }
 
-        if(temp.get(0) == null){
+        if(temp.size() == 0){
             if(numOfEp == 1){
-                temp.add(episdoes.get(episodes.size() - 1));
+                temp.add(episodes.get(episodes.size() - 1));
             }
             else if(numOfEp == 3){
                 temp.add(episodes.get(0));
                 temp.add(episodes.get(episodes.size()/2));
-                temp.add(episode.get(episodes.size() - 1));
+                temp.add(episodes.get(episodes.size() - 1));
             }
             else if(numOfEp == 5){
                 temp.add(episodes.get(0));
                 temp.add(episodes.get(1));
                 temp.add(episodes.get(episodes.size()/2));
-                temp.add(episode.get(episodes.size() - 2));
-                temp.add(episode.get(episodes.size() - 1));
+                temp.add(episodes.get(episodes.size() - 2));
+                temp.add(episodes.get(episodes.size() - 1));
             }
             
         }

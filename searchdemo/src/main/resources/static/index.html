@@ -13,18 +13,20 @@
     
     <div class="search-section">
       <div id="posterContainer" class="poster-container">
-        <!-- Poster will be inserted here by JavaScript -->
+        <img src="https://cdn.download.it/ms/static/images/poster-placeholder.png" alt="Default Poster">
       </div>
       
       <div class="search-form">
-        <input type="text" id="showTitleInput" placeholder="Enter Show Title" />
-        <input type="number" id="seasonNumberInput" placeholder="Enter Season Number" />
-        <select id="timeSelection" class="time-dropdown">
-          <option value="">Select Time Available</option>
-          <option value="a lot">A lot</option>
-          <option value="a little">A little</option>
-          <option value="very little">Very little</option>
-        </select>
+        <input type="text" id="showTitleInput" placeholder="Enter Show Title" required />
+        <input type="number" id="seasonNumberInput" placeholder="Enter Season Number" required min="1" />
+        <div class="select-wrapper">
+          <select id="timeSelection" class="time-dropdown" required>
+            <option value="" disabled selected>Select Time Available</option>
+            <option value="a lot">A lot</option>
+            <option value="a little">A little</option>
+            <option value="very little">Very little</option>
+          </select>
+        </div>
         <button onclick="performSearch()">Search</button>
       </div>
     </div>
@@ -68,10 +70,10 @@
           const showPoster = episodes[0].poster;
           const posterContainer = document.getElementById('posterContainer');
 
-          if (showPoster) {
+          if (showPoster && showPoster !== 'N/A') {
             posterContainer.innerHTML = `<img src="${showPoster}" alt="Show Poster">`;
           } else {
-            posterContainer.innerHTML = '';
+            posterContainer.innerHTML = `<img src="https://cdn.download.it/ms/static/images/poster-placeholder.png" alt="Default Poster">`;
           }
 
           // Group episodes by season
@@ -83,6 +85,11 @@
             acc[season].push(ep);
             return acc;
           }, {});
+
+          // Sort episodes within each season by episode number
+          Object.values(seasonGroups).forEach(seasonEpisodes => {
+            seasonEpisodes.sort((a, b) => a.number - b.number);
+          });
 
           const contentHTML = `
             <div class="episodes-container">
