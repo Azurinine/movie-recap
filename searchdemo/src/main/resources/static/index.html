@@ -11,9 +11,17 @@
   <div class="container">
     <h1>Search Episodes</h1>
     
-    <input type="text" id="showTitleInput" placeholder="Enter Show Title" />
-    <input type="number" id="seasonNumberInput" placeholder="Enter Season Number" />
-    <button onclick="performSearch()">Search</button>
+    <div class="search-section">
+      <div id="posterContainer" class="poster-container">
+        <!-- Poster will be inserted here by JavaScript -->
+      </div>
+      
+      <div class="search-form">
+        <input type="text" id="showTitleInput" placeholder="Enter Show Title" />
+        <input type="number" id="seasonNumberInput" placeholder="Enter Season Number" />
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </div>
     
     <div id="episodesList" class="episodes-list"></div>
   </div>
@@ -51,18 +59,39 @@
 
           // Get poster from first episode
           const showPoster = episodes[0].poster;
-          
+          const posterContainer = document.getElementById('posterContainer');
+
+          if (showPoster) {
+            posterContainer.innerHTML = `<img src="${showPoster}" alt="Show Poster">`;
+          } else {
+            posterContainer.innerHTML = '';
+          }
+
+          // Group episodes by season
+          const seasonGroups = episodes.reduce((acc, ep) => {
+            const season = ep.seasonNum || 'Unknown Season';
+            if (!acc[season]) {
+              acc[season] = [];
+            }
+            acc[season].push(ep);
+            return acc;
+          }, {});
+
           const contentHTML = `
-            ${showPoster ? `
-              <div class="show-poster">
-                <img src="${showPoster}" alt="Show Poster">
-              </div>
-            ` : ''}
             <div class="episodes-container">
-              ${episodes.map(ep => `
-                <div class="episode">
-                  <h2>${ep.name || 'Untitled'} (Episode ${ep.number || 'N/A'})</h2>
-                  <p><strong>Rating:</strong> ${ep.rating || 'N/A'}</p>
+              ${Object.entries(seasonGroups).map(([season, seasonEpisodes]) => `
+                <div class="season-group">
+                  <button class="season-header" onclick="toggleSeason(this)">
+                    Season ${season} <span class="toggle-icon">▶</span>
+                  </button>
+                  <div class="season-episodes">
+                    ${seasonEpisodes.map(ep => `
+                      <div class="episode">
+                        <h2>${ep.name || 'Untitled'} (Episode ${ep.number || 'N/A'})</h2>
+                        <p><strong>Rating:</strong> ${ep.rating || 'N/A'}</p>
+                      </div>
+                    `).join('')}
+                  </div>
                 </div>
               `).join('')}
             </div>
@@ -78,6 +107,13 @@
           `;
           console.error('Search error:', err);
         });
+    }
+
+    function toggleSeason(button) {
+      const seasonEpisodes = button.nextElementSibling;
+      const icon = button.querySelector('.toggle-icon');
+      seasonEpisodes.classList.toggle('collapsed');
+      icon.textContent = seasonEpisodes.classList.contains('collapsed') ? '▶' : '▼';
     }
   </script>
 
