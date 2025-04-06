@@ -41,6 +41,7 @@
           return res.json();
         })
         .then(episodes => {
+          console.log('Episodes:', episodes); // Add this line
           resultContainer.innerHTML = '';
 
           if (!Array.isArray(episodes) || episodes.length === 0) {
@@ -53,7 +54,6 @@
               <div class="episode">
                 <h2>${ep.name || 'Untitled'} (Episode ${ep.number || 'N/A'})</h2>
                 <p><strong>Rating:</strong> ${ep.rating || 'N/A'}</p>
-                <p><strong>Summary:</strong> ${ep.summary || 'No summary available'}</p>
               </div>
             `)
             .join('');
