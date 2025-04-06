@@ -1,10 +1,9 @@
-package sever.src.main.java.com.bruhhacks.movie_recap_backend;
-
 public abstract class ShowAbs {
     // Properties
     protected String title;
     protected String synopsis;
     protected Seasons[] seasons;
+    protected int totalSeasons;
 
     // Setters and Getters
     abstract public String getTitle();

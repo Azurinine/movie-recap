@@ -1,4 +1,3 @@
-package sever.src.main.java.com.bruhhacks.movie_recap_backend;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -46,5 +45,7 @@ public class OMDb {
     public static void main(String[] args){
         String jresponse = OMDb.SearchShow("arcane", 1);
         System.out.println(jresponse);
+
+        System.out.println();
     }
 }

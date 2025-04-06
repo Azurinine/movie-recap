@@ -1,16 +1,21 @@
-package sever.src.main.java.com.bruhhacks.movie_recap_backend;
-
 public class Show extends ShowAbs {
-
-    private String apiOutput; // API output
 
     public Show(){
         // Default constructor
     }
-    public Show(String title, int numberSeason) {
-        apiOutput = OMDb.SearchShow(title, numberSeason);
 
-        // Calls API and gets info
+    public Show(String title, int [] numberSeason) {
+        String apiOutput;
+        this.title = title;
+
+        for (int i : numberSeason) {
+            // Calls API and gets info
+            apiOutput = OMDb.SearchShow(title, i);
+
+            int idx = apiOutput.indexOf("\"totalSeasons\":\"") + 16;
+
+        }
+
         // Gets Show title, creates Episode objects, 
 
     }
