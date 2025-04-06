@@ -9,6 +9,9 @@ public class Seasons {
         // TODO
 
         // Pareses String and creates Episode Objects and appends to the array
+        /*Parse through the list given from the api key. Then get each episode, their name, and rating and create a new episodes 
+         * object. 
+         */
         episodes = null;
         seasonNum = 0;
         name = null;
@@ -18,6 +21,7 @@ public class Seasons {
         //TODO get the highest rated episode in the array of episode
 
         return null;
+        
     }
 
     public Episode[] getTopEpisode(int numOfEp){
