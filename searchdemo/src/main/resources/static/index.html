@@ -22,33 +22,51 @@
     function performSearch() {
       const title = document.getElementById("showTitleInput").value;
       const season = document.getElementById("seasonNumberInput").value;
+      const resultContainer = document.getElementById("episodesList");
+      
+      // Input validation
+      if (!title || !season) {
+        resultContainer.innerHTML = '<p class="error">Please enter both show title and season number.</p>';
+        return;
+      }
+
+      // Show loading state
+      resultContainer.innerHTML = '<p>Loading...</p>';
 
       fetch(`/api/search?title=${encodeURIComponent(title)}&season=${encodeURIComponent(season)}`)
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.json();
+        })
         .then(episodes => {
-          const resultContainer = document.getElementById("episodesList");
           resultContainer.innerHTML = '';
 
-          if (episodes.length === 0) {
+          if (!Array.isArray(episodes) || episodes.length === 0) {
             resultContainer.innerHTML = '<p>No episodes found.</p>';
             return;
           }
 
-          episodes.forEach(ep => {
-            const epDiv = document.createElement('div');
-            epDiv.classList.add('episode');
+          const episodesHTML = episodes
+            .map(ep => `
+              <div class="episode">
+                <h2>${ep.name || 'Untitled'} (Episode ${ep.number || 'N/A'})</h2>
+                <p><strong>Rating:</strong> ${ep.rating || 'N/A'}</p>
+                <p><strong>Summary:</strong> ${ep.summary || 'No summary available'}</p>
+              </div>
+            `)
+            .join('');
 
-            epDiv.innerHTML = `
-              <h2>${ep.name} (Episode ${ep.number})</h2>
-              <p><strong>Rating:</strong> ${ep.rating}</p>
-              <p><strong>Summary:</strong> ${ep.summary}</p>
-            `;
-
-            resultContainer.appendChild(epDiv);
-          });
+          resultContainer.innerHTML = episodesHTML;
         })
         .catch(err => {
-          document.getElementById("episodesList").innerText = "Error: " + err;
+          resultContainer.innerHTML = `
+            <p class="error">
+              Error: ${err.message || 'Something went wrong. Please try again.'}
+            </p>
+          `;
+          console.error('Search error:', err);
         });
     }
   </script>
