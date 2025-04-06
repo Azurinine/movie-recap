@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 public class Seasons {
-    private final ArrayList<Episode> episodes;
+    public  ArrayList<Episode> episodes;
     private final int seasonNum; 
     private final String name; 
     // private Character[] chars; 
