@@ -24,8 +24,6 @@ public class Seasons {
         /*Parse through the list given from the api key. Then get each episode, their name, and rating and create a new episodes 
          * object. 
          */
-        String pattern = "\"Episode\":\\s*(1[0-9]|20|[0-9])gm";
-        Pattern episodePat = Pattern.compile(pattern);
         String seasonPattern = "\"Season\":\"([^\"]+)\"gm";
         String pattern = "\"\\\"Episode\\\"\\:\\\"+[1-9]\"gm";
         
@@ -33,6 +31,8 @@ public class Seasons {
         episodes = new ArrayList<>();
         Pattern episodePat = Pattern.compile(seasonPattern);
         Matcher matcher = episodePat.matcher(seasonInfo);
+        ArrayList<String> epNum = new ArrayList<>();
+
         String epNamepattern = "\"Title\":\"([^\"]+)\"gm";
         
         ArrayList<String> epTitleName = new ArrayList<>();
@@ -44,13 +44,32 @@ public class Seasons {
         episodePat = Pattern.compile(pattern);
         matcher = episodePat.matcher(seasonInfo);
         while (matcher.find()) {
-            Episode newEpisode = new Episode("poop", "yeah", "Hell yeah", matcher.group());
-            episodes.add(newEpisode);
+            String episodeNum = matcher.group().substring(11);
+            //Episode newEpisode = new Episode("poop", "yeah", "Hell yeah", episodeNum);
+            //episodes.add(newEpisode);
+            epNum.add(episodeNum);
         }
-
-        seasonNum = 0;
-        name = null;
+        episodePat = Pattern.compile(epNamepattern);
+        matcher = episodePat.matcher(seasonInfo);
+        name = matcher.group(1);
+        while (matcher.find()) {
+            
+            String episodeName = matcher.group();
+            epTitleName.add(episodeName);
+        }
+        episodePat = Pattern.compile(imdBString);
+        matcher = episodePat.matcher(seasonInfo);
+        while (matcher.find()) {
+            String episodeRate = matcher.group();
+            imdbRating.add(episodeRate);
+        }
+        
+        for(int i=0;i<epNum.size();i++){
+            episodes.add(new Episode(epNum.get(i),imdbRating.get(i),"ig",epNum.get(i)));
+        }
     }
+
+    
 
     // public Episode[] getTopEpisode(){
         // //TODO get the highest rated episode in the array of episode
