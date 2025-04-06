@@ -9,8 +9,8 @@ import java.util.List;
 public class SearchController {
 
     @GetMapping("/search")
-    public List<Episode> search(@RequestParam String query) {
-        // Call your Java logic to get the episodes based on the query
-        return SearchEngine.runSearch(query);  // Assuming this returns a List<Episode>
+    public List<Episode> search(@RequestParam String title, @RequestParam int season) {
+        return SearchEngine.runSearch(title, season);
     }
+
 }

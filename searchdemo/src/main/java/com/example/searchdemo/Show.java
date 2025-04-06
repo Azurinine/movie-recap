@@ -6,15 +6,16 @@ public class Show extends ShowAbs {
         // Default constructor
     }
 
-    public Show(String title, int [] numberSeason) {
-        String apiOutput = OMDb.SearchShow(title, 1);;
-        this.title = title;
-
+    public Show(String title, int recapNumber) {
+        // Initalization
+        String apiOutput = OMDb.SearchShow(title, 1);
         int idx = apiOutput.indexOf("\"totalSeasons\":\"") + 16;
         int idx2 = apiOutput.indexOf("Episodes");
         String tS = apiOutput.substring(idx, idx2);
         int indx3 = tS.indexOf("\"");
-        totalSeasons = Integer.valueOf(tS.substring(0,indx3));
+
+        this.title = title;
+        this.totalSeasons = Integer.valueOf(tS.substring(0,indx3));
 
         seasons = new Seasons[totalSeasons];
 
@@ -32,17 +33,20 @@ public class Show extends ShowAbs {
     }
 
     /**
-     * T
+     * 
      * @param time String time on how much time needed 
      * @param seasonNumbers
      * @return
      */
-    public Episode[] getRecap(String time, int seasonNumbers []) {
+    
+    public ArrayList<Episode> getRecap(Seasons[] reSeasons) {
         //TODO
         // Calls Seasons number
+        
 
         return null;
     }
+        
 
     public String getTitle() {
         return title;
