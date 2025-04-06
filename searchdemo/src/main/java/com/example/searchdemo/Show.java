@@ -2,12 +2,14 @@ package com.example.searchdemo;
 
 public class Show extends ShowAbs {
 
+    private int reNum;
     public Show(){
         // Default constructor
     }
 
     public Show(String title, int recapNumber) {
         // Initalization
+        reNum = recapNumber;
         String apiOutput = OMDb.SearchShow(title, 1);
         int idx = apiOutput.indexOf("\"totalSeasons\":\"") + 16;
         int idx2 = apiOutput.indexOf("Episodes");
@@ -39,10 +41,12 @@ public class Show extends ShowAbs {
      * @return
      */
     
-    public ArrayList<Episode> getRecap(Seasons[] reSeasons) {
+    public ArrayList<Episode> getRecap() {
         //TODO
         // Calls Seasons number
-        
+        for(int i = 0; i < reNum; i++){
+            
+        }
 
         return null;
     }
