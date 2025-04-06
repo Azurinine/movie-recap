@@ -43,8 +43,7 @@ public class Show extends ShowAbs {
         ArrayList<Episode> topEp = new ArrayList<Episode>();
         
         System.out.println("Debug - Getting recap for season count: " + reNum);
-        
-
+    
 
         for(int i = 0; i < reNum; i++) {
             if (seasons[i] == null) {
@@ -55,7 +54,7 @@ public class Show extends ShowAbs {
             ArrayList<Episode> temp = seasons[i].getTopEpisode(time);
             System.out.println("Debug - Season " + (i+1) + " got " + temp.size() + " episodes");
             
-            for(int j = 0; j < 3 && j < temp.size(); j++) {
+            for(int j = 0; j < time && j < temp.size(); j++) {
                 topEp.add(temp.get(j));
                 System.out.println("Debug - Added episode: " + temp.get(j));
             }
